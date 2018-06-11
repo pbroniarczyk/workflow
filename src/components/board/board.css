@@ -1,0 +1,8 @@
+.board {
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.board__column-wrapper {
+    display: flex;
+}

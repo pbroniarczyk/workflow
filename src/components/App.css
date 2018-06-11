@@ -1,3 +1,4 @@
 .App {
   color: var(--black);
+  height: calc(100vh - 122px);
 }
