@@ -8,22 +8,6 @@ import "./list.css";
 
 
 class List extends Component {
-    constructor(props) {
-        super(props);
-
-        this.dropCardHandler = this.dropCardHandler.bind(this);
-    }
-
-    dropCardHandler = e => {
-        console.log("DROP TARGET", dropData);
-        e.preventDefault();
-        const dropData = e.dataTransfer.getData("text");
-    }
-
-    componentDidMount = () => {
-        console.dir(document.querySelector(".list"))
-    }
-
     render() {
         const allCards = this.props.cards;
         const filteredCards = allCards.filter(card => card.currentList === this.props.listNumber)
@@ -32,16 +16,17 @@ class List extends Component {
             <div
                 className="list"
                 id={this.props.listNumber}
-                onDragOver={this.dropCardHandler}>
+                onDragOver={e => this.props.dragOver(e)}
+                onDrop={e => this.props.dropCardHandler(e)}>
                 
                 {this.props.title}
                 
                 {
                     filteredCards.map((card, i) =>
                         <Card
-                            title={card.title} 
-                            id={card.id}
-                            key={card.id}/>
+                            card={card}
+                            key={card.id}
+                            dragCardStart={this.props.dragCardStart}/>
                     )
                 }
                 
