@@ -1,4 +1,4 @@
-.column {
+.list {
     background-color: red;
     width: 250px;
     height: 500px;
@@ -6,6 +6,6 @@
     padding: 0 5px 5px;
 }
 
-.column:last-of-type {
+.list:last-of-type {
     margin-right: 0;
 }

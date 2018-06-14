@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 // Components
-import Column from "./column/Column.jsx";
-import Card from "./card/Card.jsx";
+import List from "./list/List.jsx";
 
 // Assets
 import "./board.css";
@@ -12,16 +11,16 @@ class Board extends Component {
 	state = {
 		lists: [
 			{
-				title: "Column - 1",
+				title: "List - 1",
 				listNumber: 1
 			},
 			{
-				title: "Column - 2",
+				title: "List - 2",
 				listNumber: 2
 			},
 		],
 
-		tasks: [
+		cards: [
 			{
 				title: "Card 1",
 				id: "123fr23g",
@@ -47,11 +46,11 @@ class Board extends Component {
         		<div className="board__column-wrapper">
 
 					{ this.state.lists.map((list, i) => 
-						<Column
+						<List
 							key={i}
 							title={list.title}
-							columnNumber={list.listNumber}
-							tasks={this.state.tasks}/>
+							listNumber={list.listNumber}
+							cards={this.state.cards}/>
 						)
 					}
 

@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import Card from "../card/Card.jsx";
 
 // Assets
-import "./column.css";
+import "./list.css";
 
 
-class Column extends Component {
+class List extends Component {
     constructor(props) {
         super(props);
 
@@ -21,27 +21,27 @@ class Column extends Component {
     }
 
     componentDidMount = () => {
-        console.dir(document.querySelector(".column"))
+        console.dir(document.querySelector(".list"))
     }
 
     render() {
-        const allTasks = this.props.tasks;
-        const filteredTasks = allTasks.filter(task => task.currentList === this.props.columnNumber)
+        const allCards = this.props.cards;
+        const filteredCards = allCards.filter(card => card.currentList === this.props.listNumber)
 
         return (
             <div
-                className="column"
-                id={this.props.columnNumber}
+                className="list"
+                id={this.props.listNumber}
                 onDragOver={this.dropCardHandler}>
                 
                 {this.props.title}
                 
                 {
-                    filteredTasks.map((task, i) =>
+                    filteredCards.map((card, i) =>
                         <Card
-                            title={task.title} 
-                            id={task.id}
-                            key={task.id}/>
+                            title={card.title} 
+                            id={card.id}
+                            key={card.id}/>
                     )
                 }
                 
@@ -50,4 +50,4 @@ class Column extends Component {
     }
 }
 
-export default Column;
+export default List;
