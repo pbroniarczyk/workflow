@@ -11,21 +11,22 @@ class Card extends Component {
         this.dragCardStart = this.dragCardStart.bind(this);
     }
 
-    dragCardStart = e => {
-        const sourceCard = e.currentTarget;
+    dragCardStart = event => {
+        const sourceCard = event.currentTarget;
 
         sourceCard.style.border = "dashed";
-        e.dataTransfer.setData("text/plain", e.target.id)
+        event.dataTransfer.setData("text/plain", event.target.id)
+        console.log("DRAGGED CARD", event.dataTransfer.setData("text/plain", event.target.id))
     }
 
     render() {
         return (
             <div
-                id="card_1"
+                id={this.props.id}
                 className="card"
                 draggable="true"
                 onDragStart={this.dragCardStart}>
-                CARD
+                {this.props.title}
             </div>
         )
     }

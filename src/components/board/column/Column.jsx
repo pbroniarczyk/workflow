@@ -15,10 +15,9 @@ class Column extends Component {
     }
 
     dropCardHandler = e => {
-        e.preventDefault();
-        const dropData = e.dataTransfer;
-
         console.log("DROP TARGET", dropData);
+        e.preventDefault();
+        const dropData = e.dataTransfer.getData("text");
     }
 
     componentDidMount = () => {
@@ -26,12 +25,26 @@ class Column extends Component {
     }
 
     render() {
+        const allTasks = this.props.tasks;
+        const filteredTasks = allTasks.filter(task => task.currentList === this.props.columnNumber)
+
         return (
             <div
                 className="column"
-                onDrop={this.dropCardHandler}>
-                Column
-                <Card />
+                id={this.props.columnNumber}
+                onDragOver={this.dropCardHandler}>
+                
+                {this.props.title}
+                
+                {
+                    filteredTasks.map((task, i) =>
+                        <Card
+                            title={task.title} 
+                            id={task.id}
+                            key={task.id}/>
+                    )
+                }
+                
             </div>
         )
     }
