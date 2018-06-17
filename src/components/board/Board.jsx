@@ -49,15 +49,20 @@ class Board extends Component {
 	dragCardStart = (event, card) => {
         const sourceCard = event.currentTarget;
         sourceCard.style.border = "dashed";
-		event.dataTransfer.setData("card", card.title)
-		console.log("DROP TARGET", card.title);
+		event.dataTransfer.setData("text/html", sourceCard);
+		console.log("DRAG TARGET", sourceCard);
 	}
 	
 	dragOver = event => event.preventDefault(); 
 
 	dropCardHandler = (event, card) => {
-		let dropData = event.dataTransfer.getData("card");
-        console.log("DROP TARGET", event.dataTransfer);
+		let data = this.state.cards;
+		let from = Number(this.dragged.dataset.id);
+		let to = Number(this.over.dataset.id);
+		
+		if(from < to) to--;
+		data.splice(to, 0, data.splice(from, 1)[0]);
+		this.setState({data: data});
     }
 
 	render() {

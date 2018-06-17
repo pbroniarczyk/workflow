@@ -8,7 +8,7 @@ class Card extends Component {
     render() {
         return (
             <div
-                id={this.props.card.id}
+                data-id={this.props.card.id}
                 className="card"
                 draggable
                 onDragStart={e => this.props.dragCardStart(e, this.props.card)}>
