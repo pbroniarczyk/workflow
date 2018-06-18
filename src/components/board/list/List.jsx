@@ -17,8 +17,8 @@ class List extends Component {
                 className="list"
                 id={this.props.listNumber}
                 onDragOver={e => this.props.dragOver(e)}
-                onDrop={e => {console.log("DROP === ", e); this.props.dropCardHandler(e)}}
-                onDragEnd={e => {console.log("DRAGEND === ", e); this.props.dropCardHandler(e)}}>
+                onDrop={e => this.props.dropCardHandler(e, this.props.listNumber)}
+                onDragEnd={e => this.props.dropCardHandler(e)}>
                 
                 {this.props.title}
                 

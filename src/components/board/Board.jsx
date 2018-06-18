@@ -45,27 +45,32 @@ class Board extends Component {
 		this.dragOver = this.dragOver.bind(this);
         this.dropCardHandler = this.dropCardHandler.bind(this);
 	}
+
+	findCardInArray = (card, cardArray) => {
+		cardArray.find((cardInArray, index) => {
+			if(cardInArray.id === card.id) {
+				return index;
+			};
+		});
+	} 
 	
 	dragCardStart = (event, card) => {
         const sourceCard = event.currentTarget;
         sourceCard.style.border = "dashed";
-		event.dataTransfer.setData("text/html", sourceCard);
-		console.log("DRAG TARGET", sourceCard);
+		event.dataTransfer.setData("card", JSON.stringify(card));
 	}
 	
 	dragOver = event => event.preventDefault(); 
 
-	dropCardHandler = (event, card) => {
-		let data = this.state.cards;
-		let from = Number(this.dragged.dataset.id);
-		let to = Number(this.over.dataset.id);
-		
-		if(from < to) to--;
-		data.splice(to, 0, data.splice(from, 1)[0]);
-		this.setState({data: data});
+	dropCardHandler = (event, listNumber) => {
+		const data = event.dataTransfer.getData("card");
+		const card = JSON.parse(data);
+		let index = this.findCardInArray(card, this.state.cards);
+		console.log("index", index); 
     }
 
 	render() {
+		console.log("CARDS = ", this.state.cards)
 		return (
 			<div className="board">
 				BOARD
