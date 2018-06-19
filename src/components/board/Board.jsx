@@ -20,6 +20,10 @@ class Board extends Component {
 					title: "List - 2",
 					listNumber: 2
 				},
+				{
+					title: "List - 3",
+					listNumber: 3
+				},
 			],
 	
 			cards: [
@@ -59,16 +63,13 @@ class Board extends Component {
 	dragOver = event => event.preventDefault(); 
 
 	dropCardHandler = (event, listNumber) => {
-		const data = event.dataTransfer.getData("card");
-		const card = JSON.parse(data);
-		const index = this.findCardInArray(card, this.state.cards);
-		
-		const cardInNewList = card;
-		cardInNewList.currentList = listNumber;
+		const data = event.dataTransfer.getData("card"),
+			draggedCard = JSON.parse(data),
+			cardArray = this.state.cards,
+			index = this.findCardInArray(draggedCard, this.state.cards);
 
-		const cardArray = this.state.cards;
-		cardArray.splice(index, 1, cardInNewList);
-		
+		draggedCard.currentList = listNumber;
+		cardArray.splice(index, 1, draggedCard);
 		this.setState({ cards: cardArray });
     }
 
