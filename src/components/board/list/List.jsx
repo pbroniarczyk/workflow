@@ -2,12 +2,32 @@ import React, { Component } from 'react';
 
 // Components
 import Card from "../card/Card.jsx";
+import AddCard from "./AddCard.jsx";
 
 // Assets
 import "./list.css";
 
 
 class List extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            addingCard: false,
+            newCardTitle: "" 
+        }
+
+        this.toggleAddingCardForm = this.toggleAddingCardForm.bind(this);
+        this.setNewCardTitle = this.setNewCardTitle.bind(this);
+    }
+
+    toggleAddingCardForm = () => {
+        this.setState({ addingCard: !this.state.addingCard});
+    }
+
+    setNewCardTitle = event => {
+        this.setState({ newCardTitle: event.target.value })
+    }
+
     render() {
         const allCards = this.props.cards;
         const filteredCards = allCards.filter(card => card.currentList === this.props.listNumber);
@@ -33,37 +53,20 @@ class List extends Component {
                 
                 <button
                     className="list__btn" 
-                    onClick={() => this.props.addCard("card title", "sdfbhnefbs", this.props.listNumber)} >
+                    onClick={this.toggleAddingCardForm} >
                     Add card
                 </button>
+                { this.state.addingCard 
+                    ? <AddCard
+                        newCardTitle={this.state.newCardTitle}
+                        addCard={this.props.addCard}
+                        listNumber={this.props.listNumber}
+                        toggleAddingCardForm={this.toggleAddingCardForm}
+                        setNewCardTitle={this.setNewCardTitle} /> 
+                    : null }
             </div>
         )
     }
 }
 
 export default List;
-
-
-
-
-// constructor(props) {
-//     super(props);
-
-//     this.state = {
-//         cards: []
-//     }
-// }
-
-// componentWillReceiveProps = (nextProps) => {
-//     console.log("RECEIVE PROPS", nextProps)
-//     const filteredCards = nextProps.cards.filter(card => card.currentList === this.props.listNumber);
-
-//     this.setState({ cards: filteredCards }, console.log("filtered cards sets in state", this.state));
-// }
-
-// componentWillMount = () => {
-//     const allCards = this.props.cards;
-//     const filteredCards = allCards.filter(card => card.currentList === this.props.listNumber);
-
-//     this.setState({ cards: filteredCards });
-// }
