@@ -1,11 +1,24 @@
 .list {
     background-color: red;
     width: 250px;
-    height: 500px;
+    height: fit-content;
     margin-right: 20px;
     padding: 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .list:last-of-type {
     margin-right: 0;
+}
+
+.list__wrapper {
+    margin: 10px 0;
+}
+
+.list__btn {
+    width: 100%;
+    background-color: darkred;
+    border: none;
 }

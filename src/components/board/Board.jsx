@@ -47,9 +47,13 @@ class Board extends Component {
 
 		this.dragCardStart = this.dragCardStart.bind(this);
 		this.dragOver = this.dragOver.bind(this);
-        this.dropCardHandler = this.dropCardHandler.bind(this);
+		this.dropCardHandler = this.dropCardHandler.bind(this);
+		this.addCard = this.addCard.bind(this);
+		
+		
 	}
 
+	// DRAG AND DROP ================================================
 	findCardInArray = (card, cardArray) => 
 		cardArray.findIndex(cardInArray => 
 			cardInArray.id === card.id);
@@ -71,9 +75,19 @@ class Board extends Component {
 		draggedCard.currentList = listNumber;
 		cardArray.splice(index, 1, draggedCard);
 		this.setState({ cards: cardArray });
-    }
+	}
+	// ===============================================================
+
+	addCard = (title, id, currentList) => {
+		const newCard = { title, id, currentList };
+		const cardArray = this.state.cards;
+		cardArray.push(newCard);
+		
+		this.setState({ cards: cardArray });
+	}
 
 	render() {
+		
 		return (
 			<div className="board">
 				BOARD
@@ -86,6 +100,7 @@ class Board extends Component {
 							listNumber={list.listNumber}
 							cards={this.state.cards}
 							
+							addCard={this.addCard}
 							dragCardStart={this.dragCardStart}
 							dragOver={this.dragOver}
 							dropCardHandler={this.dropCardHandler}/>
