@@ -46,13 +46,9 @@ class Board extends Component {
         this.dropCardHandler = this.dropCardHandler.bind(this);
 	}
 
-	findCardInArray = (card, cardArray) => {
-		cardArray.find((cardInArray, index) => {
-			if(cardInArray.id === card.id) {
-				return index;
-			};
-		});
-	} 
+	findCardInArray = (card, cardArray) => 
+		cardArray.findIndex(cardInArray => 
+			cardInArray.id === card.id);
 	
 	dragCardStart = (event, card) => {
         const sourceCard = event.currentTarget;
@@ -65,12 +61,18 @@ class Board extends Component {
 	dropCardHandler = (event, listNumber) => {
 		const data = event.dataTransfer.getData("card");
 		const card = JSON.parse(data);
-		let index = this.findCardInArray(card, this.state.cards);
-		console.log("index", index); 
+		const index = this.findCardInArray(card, this.state.cards);
+		
+		const cardInNewList = card;
+		cardInNewList.currentList = listNumber;
+
+		const cardArray = this.state.cards;
+		cardArray.splice(index, 1, cardInNewList);
+		
+		this.setState({ cards: cardArray });
     }
 
 	render() {
-		console.log("CARDS = ", this.state.cards)
 		return (
 			<div className="board">
 				BOARD
