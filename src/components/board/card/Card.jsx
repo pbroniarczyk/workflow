@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from "prop-types";
 
 // Assets
 import "./card.css";
@@ -17,6 +18,12 @@ class Card extends Component {
             </div>
         )
     }
+}
+
+
+Card.propTypes = {
+    card: PropTypes.object.isRequired,
+    dragCardStart: PropTypes.func.isRequired
 }
 
 export default Card;

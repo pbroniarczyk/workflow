@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
 
 // Components
 import Card from "../card/Card.jsx";
@@ -67,6 +68,21 @@ class List extends Component {
             </div>
         )
     }
+}
+
+
+List.propTypes = {
+    dragCardStart: PropTypes.func.isRequired,
+    cards: PropTypes.array,
+    dragOver: PropTypes.func.isRequired,
+    dropCardHandler: PropTypes.func.isRequired,
+    dropCardHandler: PropTypes.func.isRequired,
+
+    setNewCardTitle: PropTypes.func.isRequired,
+    newCardTitle: PropTypes.string,
+    addCard: PropTypes.func.isRequired,
+    listNumber: PropTypes.number.isRequired,
+    toggleAddingCardForm: PropTypes.func.isRequired
 }
 
 export default List;

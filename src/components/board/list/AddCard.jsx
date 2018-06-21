@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
 
 
 class AddCard extends Component {
@@ -11,6 +12,15 @@ class AddCard extends Component {
       </div>
     )
   }
+}
+
+
+AddCard.propTypes = {
+  setNewCardTitle: PropTypes.func.isRequired,
+  newCardTitle: PropTypes.string,
+  addCard: PropTypes.func.isRequired,
+  listNumber: PropTypes.number.isRequired,
+  toggleAddingCardForm: PropTypes.func.isRequired
 }
 
 export default AddCard;
