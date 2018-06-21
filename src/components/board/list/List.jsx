@@ -76,13 +76,12 @@ List.propTypes = {
     cards: PropTypes.array,
     dragOver: PropTypes.func.isRequired,
     dropCardHandler: PropTypes.func.isRequired,
-    dropCardHandler: PropTypes.func.isRequired,
 
-    setNewCardTitle: PropTypes.func.isRequired,
+    setNewCardTitle: PropTypes.func,
     newCardTitle: PropTypes.string,
     addCard: PropTypes.func.isRequired,
     listNumber: PropTypes.number.isRequired,
-    toggleAddingCardForm: PropTypes.func.isRequired
+    toggleAddingCardForm: PropTypes.func
 }
 
 export default List;

@@ -22,7 +22,10 @@ class Card extends Component {
 
 
 Card.propTypes = {
-    card: PropTypes.object.isRequired,
+    card: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string
+    }),
     dragCardStart: PropTypes.func.isRequired
 }
 

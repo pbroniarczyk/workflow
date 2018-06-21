@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 // Components
 import List from "./list/List.jsx";
@@ -93,7 +95,7 @@ class Board extends Component {
 				BOARD
         		<div className="board__column-wrapper">
 
-					{ this.state.lists.map((list, i) => 
+					{ this.props.lists.map((list, i) => 
 						<List
 							key={i}
 							title={list.title}
@@ -113,4 +115,18 @@ class Board extends Component {
 	}
 }
 
-export default Board;
+
+Board.propTypes = {
+	lists: PropTypes.arrayOf(
+		PropTypes.shape({
+			title: PropTypes.string,
+            listNumber: PropTypes.number.isRequired
+		})
+	)
+}
+
+const mapStateToProps = state => ({
+	lists: state.listReducer.lists
+});
+
+export default connect(mapStateToProps)(Board);
