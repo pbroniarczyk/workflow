@@ -7,45 +7,46 @@ import List from "./list/List.jsx";
 
 // Assets
 import "./board.css";
+import { updateCardList } from "../../actions/cardActions";
 
 
 class Board extends Component {
 	constructor(props) {
         super(props);
-		this.state = {
-			lists: [
-				{
-					title: "List - 1",
-					listNumber: 1
-				},
-				{
-					title: "List - 2",
-					listNumber: 2
-				},
-				{
-					title: "List - 3",
-					listNumber: 3
-				},
-			],
+		// this.state = {
+		// 	lists: [
+		// 		{
+		// 			title: "List - 1",
+		// 			listNumber: 1
+		// 		},
+		// 		{
+		// 			title: "List - 2",
+		// 			listNumber: 2
+		// 		},
+		// 		{
+		// 			title: "List - 3",
+		// 			listNumber: 3
+		// 		},
+		// 	],
 	
-			cards: [
-				{
-					title: "Card 1",
-					id: "123fr23g",
-					currentList: 1
-				},
-				{
-					title: "Card 2",
-					id: "qwdfq21d",
-					currentList: 1
-				},
-				{
-					title: "Card 3",
-					id: "sdg34vdc",
-					currentList: 1
-				}
-			]
-		}
+		// 	cards: [
+		// 		{
+		// 			title: "Card 1",
+		// 			id: "123fr23g",
+		// 			currentList: 1
+		// 		},
+		// 		{
+		// 			title: "Card 2",
+		// 			id: "qwdfq21d",
+		// 			currentList: 1
+		// 		},
+		// 		{
+		// 			title: "Card 3",
+		// 			id: "sdg34vdc",
+		// 			currentList: 1
+		// 		}
+		// 	]
+		// }
 
 		this.dragCardStart = this.dragCardStart.bind(this);
 		this.dragOver = this.dragOver.bind(this);
@@ -71,18 +72,19 @@ class Board extends Component {
 	dropCardHandler = (event, listNumber) => {
 		const data = event.dataTransfer.getData("card"),
 			draggedCard = JSON.parse(data),
-			cardArray = this.state.cards,
-			index = this.findCardInArray(draggedCard, this.state.cards);
+			cardArray = this.props.cards,
+			index = this.findCardInArray(draggedCard, this.props.cards);
 
 		draggedCard.currentList = listNumber;
 		cardArray.splice(index, 1, draggedCard);
 		this.setState({ cards: cardArray });
+		// updateCardList(cardArray)
 	}
 	// ===============================================================
 
 	addCard = (title, id, currentList) => {
 		const newCard = { title, id, currentList };
-		const cardArray = this.state.cards;
+		const cardArray = this.props.cards;
 		cardArray.push(newCard);
 		
 		this.setState({ cards: cardArray });
@@ -100,7 +102,7 @@ class Board extends Component {
 							key={i}
 							title={list.title}
 							listNumber={list.listNumber}
-							cards={this.state.cards}
+							cards={this.props.cards}
 							
 							addCard={this.addCard}
 							dragCardStart={this.dragCardStart}
@@ -122,11 +124,20 @@ Board.propTypes = {
 			title: PropTypes.string,
             listNumber: PropTypes.number.isRequired
 		})
-	)
+	),
+	cards: PropTypes.arrayOf(
+		PropTypes.shape({
+			title: PropTypes.string.isRequired,
+			id: PropTypes.string.isRequired,
+			currentList: PropTypes.number.isRequired
+		})
+	),
+	updateCardList: PropTypes.func
 }
 
 const mapStateToProps = state => ({
-	lists: state.listReducer.lists
+	lists: state.listReducer.lists,
+	cards: state.cardReducer.cards
 });
 
-export default connect(mapStateToProps)(Board);
+export default connect(mapStateToProps, { updateCardList })(Board);
