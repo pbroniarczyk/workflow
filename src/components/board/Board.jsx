@@ -13,47 +13,11 @@ import { updateCardList } from "../../actions/cardActions";
 class Board extends Component {
 	constructor(props) {
         super(props);
-		// this.state = {
-		// 	lists: [
-		// 		{
-		// 			title: "List - 1",
-		// 			listNumber: 1
-		// 		},
-		// 		{
-		// 			title: "List - 2",
-		// 			listNumber: 2
-		// 		},
-		// 		{
-		// 			title: "List - 3",
-		// 			listNumber: 3
-		// 		},
-		// 	],
-	
-		// 	cards: [
-		// 		{
-		// 			title: "Card 1",
-		// 			id: "123fr23g",
-		// 			currentList: 1
-		// 		},
-		// 		{
-		// 			title: "Card 2",
-		// 			id: "qwdfq21d",
-		// 			currentList: 1
-		// 		},
-		// 		{
-		// 			title: "Card 3",
-		// 			id: "sdg34vdc",
-		// 			currentList: 1
-		// 		}
-		// 	]
-		// }
 
 		this.dragCardStart = this.dragCardStart.bind(this);
 		this.dragOver = this.dragOver.bind(this);
 		this.dropCardHandler = this.dropCardHandler.bind(this);
 		this.addCard = this.addCard.bind(this);
-		
-		
 	}
 
 	// DRAG AND DROP ================================================
@@ -77,8 +41,9 @@ class Board extends Component {
 
 		draggedCard.currentList = listNumber;
 		cardArray.splice(index, 1, draggedCard);
-		this.setState({ cards: cardArray });
-		// updateCardList(cardArray)
+		// this.setState({ cards: cardArray });
+		this.props.updateCardList(cardArray)
+		// return;
 	}
 	// ===============================================================
 
@@ -102,7 +67,7 @@ class Board extends Component {
 							key={i}
 							title={list.title}
 							listNumber={list.listNumber}
-							cards={this.props.cards}
+							// cards={this.props.cards}
 							
 							addCard={this.addCard}
 							dragCardStart={this.dragCardStart}

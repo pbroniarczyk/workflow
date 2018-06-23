@@ -1,4 +1,4 @@
-import { GET_CREATED_CARDS } from "../actions/types";
+import { GET_CREATED_CARDS, UPDATE_CARD_LIST } from "../actions/types";
 
 const initialState = {
     cards: [
@@ -23,6 +23,12 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_CREATED_CARDS:
+            return {
+                ...state,
+                cards: action.payload
+            }
+
+        case UPDATE_CARD_LIST:
             return {
                 ...state,
                 cards: action.payload
