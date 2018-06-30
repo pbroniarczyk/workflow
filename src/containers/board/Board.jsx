@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 // Components
-import List from "./list/List.jsx";
+import List from "../list/List.jsx";
 
 // Assets
 import "./board.css";

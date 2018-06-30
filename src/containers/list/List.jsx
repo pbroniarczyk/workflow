@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 // Components
-import Card from "../card/Card.jsx";
-import AddCard from "./AddCard.jsx";
+import Card from "../../components/card/Card.jsx";
+import AddCard from "../../components/addCard/AddCard.jsx";
 
 // Assets
 import "./list.css";

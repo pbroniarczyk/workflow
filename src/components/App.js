@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "../store";
 
 // Components
-import Board from "./board/Board.jsx";
+import Board from "../containers/board/Board.jsx";
 import Navbar from "./navbar/Navbar.jsx";
 
 // Assets
