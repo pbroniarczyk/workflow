@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./card.css";
 
 
-const Card = (props) => {
+const Card = props => {
     return (
         <div
             data-id={props.card.id}

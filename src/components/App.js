@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Provider } from "react-redux";
 import store from "../store";
@@ -11,17 +11,15 @@ import Navbar from "./navbar/Navbar.jsx";
 import './App.css';
 
 
-class App extends Component {
-	render() {
-		return (
-			<Provider store={store}>
-				<div className="App">
-					<Navbar />
-					<Board />
-				</div>
-			</Provider>
-		);
-	}
+const App = () => {
+	return (
+		<Provider store={store}>
+			<div className="App">
+				<Navbar />
+				<Board />
+			</div>
+		</Provider>
+	);
 }
 
 export default App;

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from "prop-types";
 
 
-const AddCard = (props) => {
+const AddCard = props => {
     return (
       <div className="add-card">
         <input onChange={props.setNewCardTitle} value={props.newCardTitle} type="text"/>
@@ -10,7 +10,7 @@ const AddCard = (props) => {
         <button onClick={props.toggleAddingCardForm}>Cencel</button>
       </div>
     )
-};
+}
 
 
 AddCard.propTypes = {
