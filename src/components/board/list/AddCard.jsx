@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from "prop-types";
 
 
-class AddCard extends Component {
-  render() {
+const AddCard = (props) => {
     return (
       <div className="add-card">
-        <input onChange={this.props.setNewCardTitle} value={this.props.newCardTitle} type="text"/>
-        <button onClick={() => this.props.addCard("card title", "sdfbhnefbs", this.props.listNumber)}>Add card</button>
-        <button onClick={this.props.toggleAddingCardForm}>Cencel</button>
+        <input onChange={props.setNewCardTitle} value={props.newCardTitle} type="text"/>
+        <button onClick={() => props.addCard("card title", "sdfbhnefbs", props.listNumber)}>Add card</button>
+        <button onClick={props.toggleAddingCardForm}>Cencel</button>
       </div>
     )
-  }
-}
+};
 
 
 AddCard.propTypes = {
