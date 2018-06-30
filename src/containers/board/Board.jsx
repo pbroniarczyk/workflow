@@ -36,14 +36,12 @@ class Board extends Component {
 	dropCardHandler = (event, listNumber) => {
 		const data = event.dataTransfer.getData("card"),
 			draggedCard = JSON.parse(data),
-			cardArray = this.props.cards,
+			cardArray = this.props.cards.map(card => ({ ...card })),
 			index = this.findCardInArray(draggedCard, this.props.cards);
 
 		draggedCard.currentList = listNumber;
 		cardArray.splice(index, 1, draggedCard);
-		// this.setState({ cards: cardArray });
 		this.props.updateCardList(cardArray)
-		// return;
 	}
 	// ===============================================================
 
@@ -67,7 +65,6 @@ class Board extends Component {
 							key={i}
 							title={list.title}
 							listNumber={list.listNumber}
-							// cards={this.props.cards}
 							
 							addCard={this.addCard}
 							dragCardStart={this.dragCardStart}

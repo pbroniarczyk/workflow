@@ -29,13 +29,8 @@ class List extends Component {
     setNewCardTitle = event => {
         this.setState({ newCardTitle: event.target.value })
     }
-
-    shouldComponentUpdate(prevState, nextProps) {
-        console.log("should component update", prevState, nextProps)
-    }
     
     render() {
-        console.log("card array", this.props.cards)
         const allCards = this.props.cards;
         const filteredCards = allCards.filter(card => card.currentList === this.props.listNumber);
 
@@ -44,9 +39,7 @@ class List extends Component {
                 className="list"
                 id={this.props.listNumber}
                 onDragOver={e => this.props.dragOver(e)}
-                onDrop={e => this.props.dropCardHandler(e, this.props.listNumber)}
-                // onDragEnd={e => this.props.dropCardHandler(e)}
-                >
+                onDrop={e => this.props.dropCardHandler(e, this.props.listNumber)} >
                 
                 {this.props.title}
                 
