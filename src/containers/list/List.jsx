@@ -8,13 +8,13 @@ import AddCard from "../../components/addCard/AddCard.jsx";
 
 // Assets
 import "./list.css";
-
+import { toggleNewCardForm } from "../../actions/listActions";
 
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            addingCard: false,
+            // addingCard: false,
             newCardTitle: "" 
         }
 
@@ -22,8 +22,13 @@ class List extends Component {
         this.setNewCardTitle = this.setNewCardTitle.bind(this);
     }
 
-    toggleAddingCardForm = () => {
-        this.setState({ addingCard: !this.state.addingCard});
+    toggleAddingCardForm = (currentList) => {
+        let list = [...this.props.lists];
+        let updatedListElement = list[currentList - 1];
+        updatedListElement.addCardVisible = !this.props.lists[currentList - 1].addCardVisible;
+        const index = list.findIndex((element, index) => index === currentList - 1);
+        list.splice(index, 1, updatedListElement);
+        this.props.toggleNewCardForm(list)
     }
 
     setNewCardTitle = event => {
@@ -34,6 +39,7 @@ class List extends Component {
         const allCards = this.props.cards;
         const filteredCards = allCards.filter(card => card.currentList === this.props.listNumber);
 
+        console.log("LIST === ", this.props);
         return (
             <div
                 className="list"
@@ -54,10 +60,10 @@ class List extends Component {
                 
                 <button
                     className="list__btn" 
-                    onClick={this.toggleAddingCardForm} >
+                    onClick={() => {this.toggleAddingCardForm(this.props.listNumber)}} >
                     Add card
                 </button>
-                { this.state.addingCard 
+                { this.props.lists[this.props.listNumber - 1].addCardVisible 
                     ? <AddCard
                         newCardTitle={this.state.newCardTitle}
                         addCard={this.props.addCard}
@@ -81,11 +87,12 @@ List.propTypes = {
     newCardTitle: PropTypes.string,
     addCard: PropTypes.func.isRequired,
     listNumber: PropTypes.number.isRequired,
-    toggleAddingCardForm: PropTypes.func
+    toggleNewCardForm: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
-    cards: state.cardReducer.cards
+    cards: state.cardReducer.cards,
+    lists: state.listReducer.lists
 })
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps, { toggleNewCardForm })(List);
