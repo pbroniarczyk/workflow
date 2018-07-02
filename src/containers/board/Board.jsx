@@ -90,7 +90,7 @@ Board.propTypes = {
 	cards: PropTypes.arrayOf(
 		PropTypes.shape({
 			title: PropTypes.string.isRequired,
-			id: PropTypes.string.isRequired,
+			id: PropTypes.number.isRequired,
 			currentList: PropTypes.number.isRequired
 		})
 	),

@@ -21,7 +21,7 @@ const Card = props => {
 
 Card.propTypes = {
     card: PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         title: PropTypes.string
     }),
     dragCardStart: PropTypes.func.isRequired
