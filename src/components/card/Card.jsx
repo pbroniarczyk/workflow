@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // Assets
 import "./card.css";
@@ -7,14 +8,18 @@ import "./card.css";
 
 const Card = props => {
     return (
-        <div
-            data-id={props.card.id}
-            className="card"
-            draggable
-            onDragStart={e => props.dragCardStart(e, props.card)}>
+        <Link to={{ 
+            pathname: `/${props.card.id}`,
+            modal: true }}>
+            <div
+                data-id={props.card.id}
+                className="card"
+                draggable
+                onDragStart={e => props.dragCardStart(e, props.card)}>
 
-            {props.card.title}
-        </div>
+                {props.card.title}
+            </div>
+        </Link>
     );
 }
 
