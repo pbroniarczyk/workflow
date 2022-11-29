@@ -1,17 +1,40 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "react",
-    "module": "esnext",
-    "moduleResolution": "node",
     "lib": [
       "dom",
+      "dom.iterable",
       "esnext"
     ],
-    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "paths": {
+      "assets/*": [
+        "src/assets/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "src/*": [
+        "src/*"
+      ],
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "sourceMap": true,
+    "strict": true,
     "target": "esnext",
   },
+  "include": [
+    "assets/images/images.d.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

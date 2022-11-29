@@ -28,8 +28,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              additionalData:
-                '@import "assets/styles/colors"; @import "assets/styles/typography";',
+              additionalData: '@import "assets/styles/colors"; @import "assets/styles/typography";',
               sassOptions: {
                 indentWidth: 2,
                 includePaths: [path.join(__dirname, '../src')],
