@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+
+@import 'reset';
+@import 'colors';
+@import 'typography';
+
+#app {
+  color: var(--red);
+  font-family: Montserrat
+}
