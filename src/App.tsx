@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import "./assets/styles/main.scss"
+import Layout from './Layout/Layout';
+
+import './assets/styles/main.scss';
 
 const App = () => {
-  return (
-    <div>test</div>
-  )
-}
+  return <Layout />;
+};
 
-export default App
+export default App;
