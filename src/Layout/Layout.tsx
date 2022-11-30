@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Flex from '../components/Flex/Flex';
+import Board from '../components/Board';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
@@ -7,12 +9,12 @@ const Layout = () => {
   return (
     <div className="layout">
       <Navbar />
-      <div className="layout__content">
+
+      <Flex justify="start" className="layout__content">
         <Sidebar />
-        <main className="board">
-          <p>test</p>
-        </main>
-      </div>
+
+        <Board />
+      </Flex>
     </div>
   );
 };
